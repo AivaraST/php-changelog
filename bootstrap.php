@@ -8,11 +8,12 @@ use Dotenv\Dotenv;
 require __DIR__ . '/vendor/autoload.php';
 
 /**
- * Start session for auth
- */
-session_start();
-
-/**
- * Load dotenv in project
+ * Add dotenv in project
  */
 $dotenv = Dotenv::createImmutable(__DIR__)->load();
+
+
+/**
+ * Start session for authentication
+ */
+session_start();
