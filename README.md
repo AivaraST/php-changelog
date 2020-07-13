@@ -33,3 +33,4 @@ Start live assets compiler via gulp
 
 ### Maybe TODO in future
 - [ ] Add twig template engine.
+- [ ] Add forms validation, because now there is no validation.
