@@ -5,30 +5,33 @@ namespace App;
 class Changes extends Database
 {
     /**
-     * Variable to hold all changes data;
+     * Properties
      */
     private $data = [];
 
+    /**
+     * Constants
+     */
     const changeTypes = [
-        ["sql_key_name" => "[added]",   "view_name" => "Added",      "css_class" => "added"],
-        ["sql_key_name" => "[updated]", "view_name" => "Updated",    "css_class" => "updated"],
-        ["sql_key_name" => "[fixed]",   "view_name" => "Fixed",      "css_class" => "fixed"],
-        ["sql_key_name" => "[removed]", "view_name" => "Removed",    "css_class" => "removed"],
+        ['sql_key_name' => 'added]',    'view_name' => 'Added',      'css_class' => 'added'],
+        ['sql_key_name' => '[updated]', 'view_name' => 'Updated',    'css_class' => 'updated'],
+        ['sql_key_name' => '[fixed]',   'view_name' => 'Fixed',      'css_class' => 'fixed'],
+        ['sql_key_name' => '[removed]', 'view_name' => 'Removed',    'css_class' => 'removed'],
     ];
 
     /**
-     * Constructor after class was created to get all data from database into property $data;
+     * Changes constructor
      */
     public function __construct()
     {
         parent::__construct();
-        return $this;
     }
 
     /**
-     * Function to get all data from database;
+     * Method to get all data from database
+     * @return array
      */
-    public function getAll()
+    public function findAll(): array
     {
         $sth = $this->dbh->query("SELECT * FROM changes ORDER BY version DESC");
         $this->data = $sth->fetchAll(\PDO::FETCH_ASSOC);
@@ -37,23 +40,11 @@ class Changes extends Database
     }
 
     /**
-     * Function to check is there any changelogs;
+     * Method to get current version
      */
-    public function isDataEmpty()
+    public function getCurrentVersion(): string
     {
-        if(!$this->data) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Function to get current version of changelog;
-     */
-    public function getCurrentVersion()
-    {
-        if($this->data && $this->data[0]['version']) {
+        if(!empty($this->data) && isset($this->data[0]['version'])) {
             return $this->data[0]['version'];
         }
 

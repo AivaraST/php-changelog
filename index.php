@@ -3,8 +3,8 @@ require __DIR__ . './bootstrap.php';
 
 use App\Changes;
 
-$changeLogs = new Changes();
-$changes = $changeLogs->getAll();
+$changes = new Changes();
+$changesData = $changes->findAll();
 
 ?>
 
@@ -26,7 +26,7 @@ $changes = $changeLogs->getAll();
             <div class="heading-text">
                 <h1>Server changelog</h1>
                 <div class ="heading-text-sub">
-                    <span id="versionNumberHead"><?=$changeLogs->getCurrentVersion()?></span>
+                    <span id="versionNumberHead"><?=$changes->getCurrentVersion()?></span>
                 </div>
             </div>
         </div>
@@ -40,8 +40,8 @@ $changes = $changeLogs->getAll();
                 <div class="changelog-slide-bg"></div>
                 <!--Version area-->
                 <?php 
-                if(!$changeLogs->isDataEmpty()) {
-                    foreach($changes as $change) { 
+                if(!empty($changesData)) {
+                    foreach($changesData as $change) {
                         $datalist = explode(PHP_EOL, $change['datalist']);
                         echo '<div class="change-log-version">';
                         echo '<span class="change-log-dot"></span>';
