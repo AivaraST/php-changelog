@@ -1,7 +1,7 @@
 <?php
 // Include required libs;
-include_once('lib/classes/ChangeLogsPreview.class.php');
-include_once('lib/classes/ChangeLogEdit.class.php');
+include_once('app/classes/ChangeLogsPreview.class.php');
+include_once('app/classes/ChangeLogEdit.class.php');
 
 // Start user login session;
 session_start();

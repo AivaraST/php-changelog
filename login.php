@@ -1,6 +1,6 @@
 <?php
 
-include_once('lib/classes/UserLogin.class.php');
+include_once('app/classes/UserLogin.class.php');
 
 $error = false;
 $errorMessage = "";
