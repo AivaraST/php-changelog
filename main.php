@@ -1,36 +1,24 @@
 <?php
-// Include required libs;
-include_once('app/classes/ChangeLogsPreview.class.php');
-include_once('app/classes/ChangeLogEdit.class.php');
+require __DIR__ . './bootstrap.php';
 
-// Start user login session;
-session_start();
-$id = $_SESSION['id'];
-$username = $_SESSION['username'];
+use App\Admin;
+use App\Auth;
 
-// Get all changelogs for edit;
-$changeLogs = new ChangeLogsPreview();
+// Get authenticated user data
+$auth = new Auth();
+$user = $auth->user();
 
-// Get selected editable id;
-$editid = -1;
-$editVersionCurrent;
-$editDateCurrent;
-$editChangeslistCurrent;
+// Get change logs
+$admin = new Admin();
+$changes = $admin->findAll();
 
-if(isset($_GET['editid'])) {
-    $editid = $_GET['editid'];
-    $selectedchange = new ChangeLogEdit($editid);
-
-    // If user has selected some change log and pressed update button;
-    if(isset($_POST['submit']) && $_POST['submit'] == 'submit') {
-        $selectedchange->updateChanges($_POST['version'], $_POST['date'], $_POST['datalist']);
+// Create new change log if submitted form
+if(isset($_POST['submit']) && $_POST['submit'] == 'submit') {
+    if(isset($_POST['version']) && isset($_POST['date']) && isset($_POST['datalist'])) {
+        $admin->create($_POST['version'], $_POST['date'], $_POST['datalist']);
     }
-
-    // If user has selected some change show them data in inputs about that changelog;
-    $editVersionCurrent = $selectedchange->getVersion();
-    $editDateCurrent = $selectedchange->getDate();
-    $editChangeslistCurrent = $selectedchange->getChanges();
 }
+
 ?>
 
 <html lang="en">
@@ -61,30 +49,23 @@ if(isset($_GET['editid'])) {
    <!--START: List of changes section area-->
     <section class="change-log-section">
         <div class="content-container-admin">
-           <h1 class="acp-greetings-text">Hello administrator, <span class="admin-name-highlight"><?=$username?></span>!</h1>
+           <h1 class="acp-greetings-text">Hello administrator, <span class="admin-name-highlight"><?=$user['username']?></span>!</h1>
            <a href="logout.php" class="logout-btn">Logout</a>
 
             <div class="admin-control-body">
                 <div class="admin-control-versions">
                     <ul>
                         <li class="changes-list-item">
-                            <a href='add.php'>Add new changelog</a>
-                        </li>
-                        <li class="changes-list-item">
-                            <a href='addtype.php'>Add new type</a>
+                            <a href='main.php'>Add new changelog</a>
                         </li>
                         <li class="changes-list-item">
                         </li>
                     <?php 
-                    if(!$changeLogs->isDataEmpty()) {
-                        $changes = $changeLogs->getAllChanges();
-                        foreach($changes as $change) { 
+                    if(!empty($changes)) {
+                        foreach($changes as $change) {
                             $addSelectedClass = "";
-                            if($editid!= -1 && $editid== $change['id']) {
-                                $addSelectedClass = "class='active'";
-                            }
                             echo '<li class="changes-list-item">';
-                            echo "<a href='main.php?editid={$change['id']}' $addSelectedClass>{$change['version']}</a>";
+                            echo "<a href='edit.php?editid={$change['id']}' $addSelectedClass>{$change['version']}</a>";
                             echo '</li>';
                         }
                     }
@@ -92,14 +73,13 @@ if(isset($_GET['editid'])) {
                     </ul>
                 </div>
                 <div class="admin-control-actions">
-                <?php if($editid!= -1) {?>
-                    <form action="main.php?editid=<?=$editid?>" method="POST">
+                    <form action="main.php" method="POST">
                         <label for="version">Version:</label>
-                        <input type="text" name="version" id="version" placeholder="Enter changelog version" value="<?=$editVersionCurrent?>">
-                        
+                        <input type="text" name="version" id="version" placeholder="Enter changelog version">
+
                         <label for="date">Date:</label>
-                        <input type="text" name="date" id="date" placeholder="Enter changelog date" value="<?=$editDateCurrent?>">
-                        
+                        <input type="text" name="date" id="date" placeholder="Enter changelog date">
+
                         <label for="datalist">Changes list:</label>
                         <div class="admin-control-suggestions">
                             <button class="badge-main-btn added" type="button">Added</button>
@@ -107,15 +87,13 @@ if(isset($_GET['editid'])) {
                             <button class="badge-main-btn fixed" type="button">Fixed</button>
                             <button class="badge-main-btn removed" type="button">Removed</button>
                         </div>
-                        <textarea name="datalist" id="datalist" placeholder="Enter changes"><?=$editChangeslistCurrent?></textarea>
+                        <textarea name="datalist" id="datalist" placeholder="Enter changes"></textarea>
 
                         <div class="admin-control-buttons">
-                            <button type="submit" name="submit" value="submit" class="admin-control-form-btn update-btn">Update</button>
-                            <a href="delete.php?id=<?=$editid?>" class="admin-control-form-btn delete-btn">Delete</a>
+                            <button type="submit" name="submit" value="submit" class="admin-control-form-btn update-btn">Create</button>
                         </div>
 
                     </form>
-                    <?php } ?>
                 </div>
             </div>
         </div>

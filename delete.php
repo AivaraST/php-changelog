@@ -1,7 +1,8 @@
 <?php
-include_once('app/classes/ChangeLogEdit.class.php');
 
-$selectedchange = new ChangeLogEdit($_GET['id']);
-$selectedchange->deleteChangelog();
+use App\Admin;
 
-header('location: main.php');
+require __DIR__ . './bootstrap.php';
+
+$admin = new Admin();
+$admin->delete($_GET['id']);

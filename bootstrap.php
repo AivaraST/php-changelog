@@ -3,16 +3,16 @@
 use Dotenv\Dotenv;
 
 /**
- * Add autoload in project.
+ * Add autoload in project
  */
 require __DIR__ . '/vendor/autoload.php';
 
 /**
- * Load dotenv in project.
+ * Start session for auth
  */
-$dotenv = Dotenv::createImmutable(__DIR__)->load();
+session_start();
 
 /**
- * Load types config in project
+ * Load dotenv in project
  */
-require __DIR__ . '/app/configs/types.config.php';
+$dotenv = Dotenv::createImmutable(__DIR__)->load();

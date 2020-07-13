@@ -8,6 +8,7 @@ class Changes extends Database
      * Properties
      */
     private $data = [];
+    protected $id;
 
     /**
      * Constants
@@ -37,6 +38,24 @@ class Changes extends Database
         $this->data = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
         return $this->data;
+    }
+
+    /**
+     * method to get one log at the time;
+     * @param int $id
+     * @return array
+     */
+    public function findOne(int $id): array
+    {
+        $sth = $this->dbh->prepare("SELECT * FROM changes WHERE id = ? LIMIT 10");
+        $sth->execute([$id]);
+        $single = $sth->fetch(\PDO::FETCH_ASSOC);
+
+        if($single) {
+            $this->id = $single['id'];
+        }
+
+        return $single;
     }
 
     /**

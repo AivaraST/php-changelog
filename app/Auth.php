@@ -9,15 +9,14 @@ class Auth extends Database
     /**
      * Attributes
      */
-    private int $id;
-    private string $username;
+    private $id;
+    private $username;
 
     /**
      * Auth constructor
      */
     public function __construct()
     {
-        session_start();
         parent::__construct();
     }
 
@@ -49,7 +48,6 @@ class Auth extends Database
      */
     public function logout(): void
     {
-        session_start();
         session_unset();
         session_destroy();
 
@@ -60,7 +58,7 @@ class Auth extends Database
      * Method to get auth data
      * @return array
      */
-    public function getAuthUser(): array
+    public function user(): array
     {
         return [
             'id' => $_SESSION['id'],
@@ -107,7 +105,8 @@ class Auth extends Database
         return false;
     }
 
-    public static function isAuthenticated() {
+    public static function check() {
+
         if(isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
             return true;
         }
