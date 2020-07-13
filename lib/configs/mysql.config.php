@@ -4,8 +4,8 @@
 
 define('DB_HOST', 'localhost');
 
-define('DB_NAME', 'aivlt_changelog');
+define('DB_NAME', 'php-changelog');
 
-define('DB_USER', 'aivlt_changelog');
+define('DB_USER', 'root');
 
-define('DB_PASSWORD', 'UneR45C699fJAkXU');
+define('DB_PASSWORD', '');

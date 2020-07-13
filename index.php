@@ -1,10 +1,10 @@
 <?php
-include_once('lib/classes/ChangeLogsPreview.class.php');
+include_once('./lib/classes/ChangeLogs.class.php');
 
-$changeLogs = new ChangeLogsPreview();
-$version = $changeLogs->getCurrentVersion();
+$changeLogs = new ChangeLogs();
+$changeLogs->getAllChanges();
+
 ?>
-
 
 <html lang="en">
 <head>
@@ -24,7 +24,7 @@ $version = $changeLogs->getCurrentVersion();
             <div class="heading-text">
                 <h1>Server changelog</h1>
                 <div class ="heading-text-sub">
-                    <span id="versionNumberHead"><?=$version?></span>
+                    <span id="versionNumberHead"><?=$changeLogs->getCurrentVersion()?></span>
                 </div>
             </div>
         </div>
