@@ -1,0 +1,471 @@
+/*
+    Set global styling for all elements;
+*/
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #1f3045;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*
+    Main custom settings for better workflow;
+*/
+.content-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+.content-container-admin {
+    width: 70%;
+    margin: 0 auto;
+}
+
+/*
+    Header section
+*/
+.header-section {
+    padding: 50px 0;
+    text-align:center;
+
+    .heading-text {
+        display: inline-block;
+
+        .heading-text-sub {
+            float: right;
+
+            a {
+                background-color: #df6161;
+                color: #fff;
+                padding: 3px 5px;
+                border-radius: 5px;
+                display: inline-block;
+                font-size: 14px
+            }
+
+            span {
+                background-color: #1f3045;
+                color: #fff;
+                padding: 3px 5px;
+                border-radius: 5px;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.badge-main {
+    border-radius: 5px;
+    padding: 1px 8px;
+    margin-right: 5px;
+    color: #fff;
+
+    &.added {
+        background-color: #a89f4e;
+    }
+
+    &.updated {
+        background-color: #7777ff;
+    }
+
+    &.fixed {
+        background-color: #c977ff;
+    }
+
+    &.removed {
+        background-color: #ff7777;
+    }
+}
+
+/*
+    Change log area desing
+*/
+.changelog-main-block {
+    padding: 0 10px;
+    position: relative;
+
+    .changelog-slide-bg {
+        background-color: #1f3045;
+        color: #fff;
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        transition: all 0.5s ease-in-out;
+        opacity: 0;
+    }
+
+    .change-log-version {
+        position: relative;
+        border-left: 1px solid #ccc;
+        padding: 20px 20px;
+        cursor: pointer;
+        transition: all 0.5s ease-in-out;
+
+        .change-log-dot {
+            display: block;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: -5px;
+            
+            border-radius: 50%;
+            background-color: #fff;
+            border: 2px solid #1f3045;
+            box-shadow: 0 0 0 3px #fff;            
+            transition: all 0.5s ease-in-out;
+        }
+
+        .change-log-line {
+            height: 1px;
+            width: 1px;
+        }
+
+        h1 {
+            margin-top: -10px;
+        }
+
+        ul.changes-list {
+            list-style-type: none;
+    
+            li.changes-list-item {
+                padding: 5px 0;
+            }
+        }
+    }
+    .change-log-version.change-log-transition {
+        color: #fff;
+
+        .change-log-dot {
+            background-color: #fff;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px #1f304500;
+        }
+    }
+}
+
+
+/*
+    Pagination
+*/
+.changelog-pagination-main {
+    margin: 50px 0;
+    ul {
+        display: table;
+        margin: 0 auto;
+        list-style: none;
+        
+        li {
+            text-align: center;
+            line-height: 25px;
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+            background-color: #354b66;
+            border-radius: 5px;
+            color: #fff;
+            transition: all 0.5s ease-in-out;
+
+            a {
+                color: #fff;
+                display: block;
+                width: inherit;
+                height: inherit;
+            }
+        }
+        li:hover {
+            background-color: #1f3045;
+        }
+    }
+}
+
+/*
+    Footer
+*/
+.footer-section {
+    padding: 80px 0 20px 0;
+    text-align: center;
+}
+
+/*
+    Login form
+*/
+.login-form {
+    label {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    input {
+        display: block;
+        width: 100%;
+        padding: 15px 10px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        background-color: #f8f2f2;
+        color: #1f3045;
+        margin-bottom: 10px;
+        font-family: 'Poppins', sans-serif;
+    }
+    input::placeholder {
+        color: #1f3045;
+    }
+
+    .login-form-buttons-block {
+        display: flex;
+    }
+
+    button.login-form-button, a.login-form-button {
+        display: inline-block;
+        padding: 15px 10px;
+        border-radius: 5px;
+        color: #fff;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        transition: background-color .3s ease-in-out;
+        text-align: center;
+
+        &.login-btn {
+            width: 70%;
+            background-color: #1f3045;
+        }
+
+        &.login-btn:hover {
+            background-color: #2a3f58;
+        }
+
+        &.home-btn {
+            width: 30%;
+            margin-left: 15px;
+            background-color: #df6161;
+        }
+
+        &.home-btn:hover {
+            background-color: #f16d6d;
+        }
+    }
+    span.error-message {
+        display: block;
+        padding-bottom: 10px;
+        color: #df6161;
+    }
+}
+
+/*
+    Admin user panel
+*/
+h1.acp-greetings-text {
+    display: inline-block;
+    color: #1f3045;
+    font-size: 20px;
+}
+span.admin-name-highlight {
+    color: #f16d6d;
+}
+
+a.logout-btn {
+    color: #fff;
+    background-color: #1f3045;
+    padding: 3px 5px;
+    border-radius: 3px;
+    transition: background-color .3s ease-in-out;
+}
+
+a.logout-btn:hover {
+    background-color: #2a3f58;
+}
+
+.admin-control-body {
+    display: flex;
+    padding: 20px 0;
+}
+
+.admin-control-versions {
+    width: 30%;
+    //height: 500px;
+    max-height: 640px;
+    background-color: #1f3045;
+
+    overflow-y: scroll;
+    padding-left: 10px;
+
+    ul {
+        list-style: none;
+    }
+    li {
+        width: 100%;
+        height: 50px;
+        border-bottom: 1px solid #e6e6e6;
+        line-height: 50px;
+        margin: 0;
+    }
+    a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding-left: 20px;
+        color: #fff;
+        background-color: #1f3045;
+        transition: background-color 0.5s ease-in-out;
+    }
+    a:hover, a.active {
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        background-color: #2a3f58;
+    }
+}
+
+.admin-control-actions {
+    width: 70%;
+    min-height: 600px;
+    background-color: #f8f2f2;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 30px;
+
+    label {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    input {
+        display: block;
+        width: 100%;
+        padding: 15px 10px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        background-color: #fff;
+        color: #1f3045;
+        margin-bottom: 10px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    textarea {
+        display: block;
+        width: 100%;
+        height: 250px;
+        padding: 15px 10px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        background-color: #fff;
+        color: #1f3045;
+        margin-bottom: 10px;
+        font-family: 'Poppins', sans-serif;
+        resize: none;
+    }
+
+
+    input::placeholder {
+        color: #1f3045;
+    }
+   
+}
+
+.admin-control-suggestions {
+    display: block;
+    margin-bottom: 5px;
+
+    button.badge-main-btn {
+        border-radius: 5px;
+        padding: 4px 10px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        color: #fff;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    
+        &.added {
+            background-color: #a89f4e;
+        }
+        &.added:hover {
+            background-color: #c5bc65;
+        }
+    
+        &.updated {
+            background-color: #7777ff;
+        }
+        &.updated:hover {
+            background-color: #8d8dfa;
+        }
+    
+        &.fixed {
+            background-color: #c977ff;
+        }
+        &.fixed:hover {
+            background-color: #ce92f7;
+        }
+    
+        &.removed {
+            background-color: #ff7777;
+        }
+        &.removed:hover {
+            background-color: #ff8a8a;
+        }
+    }
+}
+
+.admin-control-buttons {
+    float: right;
+
+    button.admin-control-form-btn, a.admin-control-form-btn {
+        display: inline-block;
+        padding: 15px 10px;
+        border-radius: 5px;
+        color: #fff;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        transition: background-color .3s ease-in-out;
+        text-align: center;
+
+        &.update-btn {
+            width: 100px;
+            background-color: #1f3045;
+        }
+
+        &.update-btn:hover {
+            background-color: #2a3f58;
+        }
+
+        &.delete-btn {
+            width: 100px;
+            margin-left: 5px;
+            background-color: #df6161;
+        }
+
+        &.delete-btn:hover {
+            background-color: #f16d6d;
+        }
+    }
+}
+
+
+
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
