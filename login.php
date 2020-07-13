@@ -3,6 +3,10 @@ require __DIR__ . './bootstrap.php';
 
 use App\Auth;
 
+if(Auth::check()) {
+    Auth::redirect('main');
+}
+
 $errorMessage = '';
 
 if(isset($_POST['submit']) && $_POST['submit'] == 'submit') {

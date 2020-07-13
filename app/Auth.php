@@ -17,6 +17,10 @@ class Auth extends Database
      */
     public function __construct()
     {
+        if(!self::check()) {
+            self::redirect('login');
+        }
+
         parent::__construct();
     }
 
@@ -111,7 +115,11 @@ class Auth extends Database
             return true;
         }
 
-        (new Auth)->logout();
         return false;
+    }
+
+    public static function redirect(string $path = 'index')
+    {
+        header("location: ${path}.php");
     }
 }
