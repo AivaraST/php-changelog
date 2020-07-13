@@ -1,7 +1,5 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
-require __DIR__ . '/app/configs/mysql.config.php';
-require __DIR__ . '/app/configs/types.config.php';
+require __DIR__ . './bootstrap.php';
 
 use App\ChangeLogs\ChangeLogs;
 
