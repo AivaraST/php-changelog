@@ -1,14 +1,15 @@
 <?php
+require __DIR__ . './bootstrap.php';
 
 use App\Auth;
 
 $error = false;
-$errorMessage = "";
+$errorMessage = '';
 
 if(isset($_POST['submit']) && $_POST['submit'] == 'submit') {
-    $user = new Auth();
+    $auth = new Auth();
     try {
-        $user->loginUser($_POST['username'], $_POST['password']);
+        $auth->login($_POST['username'], $_POST['password']);
     }
     catch (Exception $e) {
         $error = true;
