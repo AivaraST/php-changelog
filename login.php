@@ -1,12 +1,12 @@
 <?php
 
-include_once('app/classes/UserLogin.class.php');
+use App\Auth;
 
 $error = false;
 $errorMessage = "";
 
 if(isset($_POST['submit']) && $_POST['submit'] == 'submit') {
-    $user = new UserLogin();
+    $user = new Auth();
     try {
         $user->loginUser($_POST['username'], $_POST['password']);
     }

@@ -1,14 +1,20 @@
 <?php
-namespace App\ChangeLogs;
 
-use App\Database\Database;
+namespace App;
 
-class ChangeLogs extends Database
+class Changes extends Database
 {
     /**
      * Variable to hold all changes data;
      */
     private $data = [];
+
+    const changeTypes = [
+        ["sql_key_name" => "[added]",   "view_name" => "Added",      "css_class" => "added"],
+        ["sql_key_name" => "[updated]", "view_name" => "Updated",    "css_class" => "updated"],
+        ["sql_key_name" => "[fixed]",   "view_name" => "Fixed",      "css_class" => "fixed"],
+        ["sql_key_name" => "[removed]", "view_name" => "Removed",    "css_class" => "removed"],
+    ];
 
     /**
      * Constructor after class was created to get all data from database into property $data;

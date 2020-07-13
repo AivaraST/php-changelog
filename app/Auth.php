@@ -1,10 +1,10 @@
 <?php
 
-include_once('DatabaseConnection.class.php');
+namespace App;
 
 session_start();
 
-class UserLogin extends DatabaseConnection
+class Auth extends Database
 {
     /**
      * Attributes
@@ -17,7 +17,7 @@ class UserLogin extends DatabaseConnection
     public function loginUser($username, $password)
     {
         if(!($this->isUserExists($username) && $this->isUserPasswordMatches($username, $password))) {
-            throw new Exception("Bad username or password, try again!");
+            throw new \Exception("Bad username or password, try again!");
         } else {
             $_SESSION['id'] = $this->id;
             $_SESSION['username'] = $username;
@@ -32,7 +32,7 @@ class UserLogin extends DatabaseConnection
     {
         $sth = $this->dbh->prepare("SELECT username FROM users WHERE username = ?");
         $sth->execute([$username]);
-        $data = $sth->fetch(PDO::FETCH_ASSOC);
+        $data = $sth->fetch(\PDO::FETCH_ASSOC);
         
         if($data) {
             return true;

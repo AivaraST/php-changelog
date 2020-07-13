@@ -1,5 +1,6 @@
 <?php
-namespace App\Database;
+
+namespace App;
 
 class Database
 {

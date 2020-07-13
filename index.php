@@ -1,9 +1,10 @@
 <?php
+
+use App\Changes;
+
 require __DIR__ . './bootstrap.php';
 
-use App\ChangeLogs\ChangeLogs;
-
-$changeLogs = new ChangeLogs();
+$changeLogs = new Changes();
 $changeLogs->getAllChanges();
 
 ?>
