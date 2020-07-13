@@ -2,33 +2,78 @@
 
 namespace App;
 
-session_start();
+use Exception;
 
 class Auth extends Database
 {
     /**
      * Attributes
      */
-    private $id;
+    private int $id;
+    private string $username;
 
     /**
-     * Function to try log in user with passed data;
+     * Auth constructor
      */
-    public function loginUser($username, $password)
+    public function __construct()
     {
-        if(!($this->isUserExists($username) && $this->isUserPasswordMatches($username, $password))) {
-            throw new \Exception("Bad username or password, try again!");
-        } else {
-            $_SESSION['id'] = $this->id;
-            $_SESSION['username'] = $username;
-            header('location: main.php');
-        }
+        session_start();
+        parent::__construct();
     }
-    
+
     /**
-     * Function to check is user exists;
+     * Method to try log in user with passed data
+     * @param string $username
+     * @param string $password
+     * @throws Exception
      */
-    private function isUserExists($username)
+    public function login(string $username, string $password): void
+    {
+        if(!$this->isUserExists($username)) {
+            throw new Exception("Bad username or password, try again!");
+        }
+
+        if(!$this->isUserPasswordMatches($username, $password)) {
+            throw new Exception("Bad username or password, try again!");
+        }
+
+        $_SESSION['id'] = $this->id;
+        $_SESSION['username'] = $this->username;
+        $_SESSION['logged'] = true;
+
+        header('location: main.php');
+    }
+
+    /**
+     * Method to logout
+     */
+    public function logout(): void
+    {
+        session_start();
+        session_unset();
+        session_destroy();
+
+        header('location: login.php');
+    }
+
+    /**
+     * Method to get auth data
+     * @return array
+     */
+    public function getAuthUser(): array
+    {
+        return [
+            'id' => $_SESSION['id'],
+            'username' => $_SESSION['username'],
+        ];
+    }
+
+    /**
+     * Method to check is user exists;
+     * @param string $username
+     * @return bool
+     */
+    private function isUserExists(string $username): bool
     {
         $sth = $this->dbh->prepare("SELECT username FROM users WHERE username = ?");
         $sth->execute([$username]);
@@ -40,11 +85,14 @@ class Auth extends Database
 
         return false;
     }
-    
+
     /**
-     * Function to check is user input password matches from hashed password from database;
+     * Method to check is user input password matches from hashed password from database;
+     * @param string $username
+     * @param string $password
+     * @return bool
      */
-    private function isUserPasswordMatches($username, $password)
+    private function isUserPasswordMatches(string $username, string $password): bool
     {
         $sth = $this->dbh->prepare("SELECT id, username, password FROM users WHERE username = ?");
         $sth->execute([$username]);
@@ -52,9 +100,19 @@ class Auth extends Database
         
         if(password_verify($password, $data['password'])) {
             $this->id = $data['id'];
+            $this->username = $data['username'];
             return true;
         }
 
+        return false;
+    }
+
+    public static function isAuthenticated() {
+        if(isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
+            return true;
+        }
+
+        (new Auth)->logout();
         return false;
     }
 }

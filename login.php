@@ -3,16 +3,15 @@ require __DIR__ . './bootstrap.php';
 
 use App\Auth;
 
-$error = false;
 $errorMessage = '';
 
 if(isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     $auth = new Auth();
+
     try {
         $auth->login($_POST['username'], $_POST['password']);
     }
     catch (Exception $e) {
-        $error = true;
         $errorMessage = $e->getMessage();
     }
 }
@@ -55,7 +54,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit') {
                     <label for="password">Password:</label>
                     <input type="password" name="password" id="password" placeholder="Enter your login password">
                     
-                    <?php if($error) {?>
+                    <?php if(!empty($errorMessage)) {?>
                         <span class="error-message"><?=$errorMessage?></span>
                     <?php }?>
 
