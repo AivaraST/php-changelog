@@ -1,7 +1,7 @@
 <?php
+require __DIR__ . './bootstrap.php';
 
-session_start();
-session_unset(); 
-session_destroy();
+use App\Auth;
 
-header('location: login.php');
+$auth = new Auth();
+$auth->logout();
