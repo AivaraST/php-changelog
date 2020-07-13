@@ -1,5 +1,9 @@
 <?php
-include_once('./lib/classes/ChangeLogs.class.php');
+require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/lib/configs/mysql.config.php';
+require __DIR__ . '/lib/configs/types.config.php';
+
+use App\ChangeLogs\ChangeLogs;
 
 $changeLogs = new ChangeLogs();
 $changeLogs->getAllChanges();

@@ -1,8 +1,9 @@
 <?php
+namespace App\ChangeLogs;
 
-include_once('DatabaseConnection.class.php');
+use App\Database\Database;
 
-class ChangeLogs extends DatabaseConnection
+class ChangeLogs extends Database
 {
     /**
      * Variable to hold all changes data;
@@ -23,7 +24,7 @@ class ChangeLogs extends DatabaseConnection
     public function getAllChanges()
     {
         $sth = $this->dbh->query("SELECT * FROM changes ORDER BY version DESC");
-        $this->data = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $this->data = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
         return $this->data;
     }

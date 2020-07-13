@@ -1,0 +1,11 @@
+{
+    "name": "stasi/php-changelog",
+    "require": {
+      "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "lib/"
+        }
+    }
+}

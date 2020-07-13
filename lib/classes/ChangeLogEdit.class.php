@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Classes\ChangeLogEdit;
+
 include_once('DatabaseConnection.class.php');
 
 class ChangeLogEdit extends DatabaseConnection
