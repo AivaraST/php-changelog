@@ -22,12 +22,13 @@ class Changes extends Database
     public function __construct()
     {
         parent::__construct();
+        return $this;
     }
 
     /**
      * Function to get all data from database;
      */
-    public function getAllChanges()
+    public function getAll()
     {
         $sth = $this->dbh->query("SELECT * FROM changes ORDER BY version DESC");
         $this->data = $sth->fetchAll(\PDO::FETCH_ASSOC);

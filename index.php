@@ -1,11 +1,10 @@
 <?php
+require __DIR__ . './bootstrap.php';
 
 use App\Changes;
 
-require __DIR__ . './bootstrap.php';
-
 $changeLogs = new Changes();
-$changeLogs->getAllChanges();
+$changes = $changeLogs->getAll();
 
 ?>
 
@@ -42,7 +41,6 @@ $changeLogs->getAllChanges();
                 <!--Version area-->
                 <?php 
                 if(!$changeLogs->isDataEmpty()) {
-                    $changes = $changeLogs->getAllChanges();
                     foreach($changes as $change) { 
                         $datalist = explode(PHP_EOL, $change['datalist']);
                         echo '<div class="change-log-version">';
@@ -73,6 +71,8 @@ $changeLogs->getAllChanges();
                         echo '</ul>';
                         echo '</div>';
                     }
+                } else {
+                    echo '<h1>No changes yet..</h1>';
                 }
                 ?>
                 <!--Version area-->
@@ -92,6 +92,5 @@ $changeLogs->getAllChanges();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="js/scripts.js"></script>
     <!-- SCRIPTS -->
-
 </body>
 </html>
