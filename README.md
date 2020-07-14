@@ -31,6 +31,6 @@ Start live assets compiler via gulp
 - GULP
 - PHP (OOP)
 
-### Maybe TODO in future
+### Maybe TODO in the future
 - [ ] Add twig template engine.
 - [ ] Add forms validation, because now there is no validation.
