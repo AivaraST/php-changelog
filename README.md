@@ -37,3 +37,4 @@ Start live assets compiler via gulp
 ### Maybe TODO in the future
 - [ ] Add twig template engine.
 - [ ] Add forms validation, because now there is no validation.
+- [ ] Add singleton mysql connection.
