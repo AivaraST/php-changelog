@@ -29,7 +29,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
     
     <title>Changelog</title>
 </head>
@@ -81,7 +81,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     <!-- SCRIPTS -->
     <script src="https://kit.fontawesome.com/e357e65244.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-    <script src="js/scripts.js"></script>
+   <script src="./assets/js/bundle.js"></script>
     <!-- SCRIPTS -->
 
 </body>

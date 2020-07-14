@@ -15,16 +15,16 @@ $changesData = $changes->findAll();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
     
     <title>Changelog</title>
 </head>
-<body>
+<body class="home">
    <!--START: Heading text section area-->
     <header class="header-section">
         <div class="content-container">
             <div class="heading-text">
-                <h1>Server changelog</h1>
+                <h1>Server changelogs</h1>
                 <div class ="heading-text-sub">
                     <span id="versionNumberHead"><?=$changes->getCurrentVersion()?></span>
                 </div>
@@ -90,7 +90,7 @@ $changesData = $changes->findAll();
     <!-- SCRIPTS -->
     <script src="https://kit.fontawesome.com/e357e65244.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-    <script src="js/scripts.js"></script>
+   <script src="./assets/js/bundle.js"></script>
     <!-- SCRIPTS -->
 </body>
 </html>
