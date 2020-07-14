@@ -1,5 +1,5 @@
-node_modules
-vendor
-assets
+/.idea
+/node_modules
+/vendor
+/assets
 .env
-.idea
