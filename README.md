@@ -18,7 +18,10 @@ Copy .env.example config and put your database information in .env
 `cp .env.example .env`
 
 Insert dummy db tables into your database  
-`test/db-example.txt`
+`test/db-example.sql`
+
+Test admin user credentials is  
+`admin admin`  
 
 ### Dev
 Start live assets compiler via gulp  
