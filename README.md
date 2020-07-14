@@ -1,7 +1,7 @@
 # Vanilla PHP project (changelogs)
 This project was created for fun, you can check live version on [aiv.lt](https://aiv.lt/changelogs) website.
 
-###Installation
+### Installation
 Clone code from github  
 `git clone https://github.com/AivaraST/php-changelog.git`
 
@@ -20,7 +20,7 @@ Copy .env.example config and put your database information in .env
 Insert dummy db tables into your database  
 `test/db-example.txt`
 
-###Dev
+### Dev
 Start live assets compiler via gulp  
 `npm run dev`
 
